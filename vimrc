@@ -1,4 +1,6 @@
 set number
+set nocompatible
+set filetype
 syntax on
 colorscheme monokai
 
@@ -8,6 +10,9 @@ set shiftwidth=4
 set expandtab
 set autoindent
 set smartindent
+
+" auto generate tags on save
+au BufWritePost *.py,*.c,*.cpp,*.h,*.hpp silent! !eval 'ctags -R -o newtags; mv newtags tags' &
 
 " set font if in gvim
 if has( "gui_running" )
