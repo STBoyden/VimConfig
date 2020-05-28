@@ -50,8 +50,10 @@ function! s:h(group, style)
   endif
   if g:monokai_termcolors == 16
     let l:ctermfg = (has_key(a:style, "fg") ? a:style.fg.cterm16 : "NONE")
+    let l:ctermbg = (has_key(a:style, "bg") ? a:style.bg.cterm16 : "NONE")
   else
     let l:ctermfg = (has_key(a:style, "fg") ? a:style.fg.cterm : "NONE")
+    let l:ctermbg = (has_key(a:style, "bg") ? a:style.bg.cterm : "NONE")
   end
   execute "highlight" a:group
     \ "guifg="   (has_key(a:style, "fg")      ? a:style.fg.gui   : "NONE")
@@ -59,6 +61,7 @@ function! s:h(group, style)
     \ "guisp="   (has_key(a:style, "sp")      ? a:style.sp.gui   : "NONE")
     \ "gui="     (!empty(s:guiformat) ? s:guiformat   : "NONE")
     \ "ctermfg=" . l:ctermfg
+    \ "ctermbg=" . l:ctermbg
     \ "cterm="   (!empty(s:ctermformat) ? s:ctermformat   : "NONE")
 endfunction
 
@@ -67,9 +70,9 @@ endfunction
 
 let s:white       = { "gui": "#E8E8E3", "cterm": "252" }
 let s:white2      = { "gui": "#d8d8d3", "cterm": "250" }
-let s:black       = { "gui": "#272822", "cterm": "234" }
+let s:black       = { "gui": "#111111", "cterm": "NONE" }
 let s:lightblack  = { "gui": "#2D2E27", "cterm": "235" }
-let s:lightblack2 = { "gui": "#383a3e", "cterm": "236" }
+let s:lightblack2 = { "gui": "#171717", "cterm": "236" }
 let s:lightblack3 = { "gui": "#3f4145", "cterm": "237" }
 let s:darkblack   = { "gui": "#211F1C", "cterm": "233" }
 let s:grey        = { "gui": "#8F908A", "cterm": "243" }
@@ -123,7 +126,7 @@ call s:h("MoreMsg",       { "fg": s:yellow })
 call s:h("ErrorMsg",      { "fg": s:black,      "bg": s:red,          "format": "standout" })
 call s:h("WarningMsg",    { "fg": s:red })
 call s:h("VertSplit",     { "fg": s:darkgrey,   "bg": s:darkblack })
-call s:h("LineNr",        { "fg": s:grey,       "bg": s:lightblack })
+call s:h("LineNr",        { "fg": s:grey,       "bg": s:lightblack2 })
 call s:h("CursorLineNr",  { "fg": s:orange,     "bg": s:lightblack })
 call s:h("SignColumn",    {                     "bg": s:lightblack })
 
