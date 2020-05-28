@@ -1,6 +1,5 @@
 set number
 set nocompatible
-set filetype
 syntax on
 colorscheme monokai
 
@@ -10,6 +9,14 @@ set shiftwidth=4
 set expandtab
 set autoindent
 set smartindent
+
+" file browser tweaks
+let g:netrw_banner=0
+let g:netrw_browse_split=4
+let g:netrw_liststyle=3
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
 
 " auto generate tags on save
 au BufWritePost *.py,*.c,*.cpp,*.h,*.hpp silent! !eval 'ctags -R -o newtags; mv newtags tags' &
@@ -37,6 +44,8 @@ inoremap <C-o> <ESC>:e
 " bindings for closing current buffer and creating a new empty one
 nnoremap <C-q> :enew\|bdelete# <CR>
 inoremap <C-q> <ESC>:enew\|bdelete# <CR>
+nnoremap <S-C-q> :q<CR>
+inoremap <S-C-q> <Esc>:q<CR>
 
 " bindings for opening tabs
 nnoremap <C-t> :tabnew<CR>
