@@ -22,6 +22,9 @@ nnoremap G Gzz
 nnoremap n nzz
 nnoremap N Nzz
 
+" bindings to jump to specific point
+inoremap <Bslash><Bslash> <Esc>/<++><Enter>"_c4l
+
 " bindings for opening a file in the current working directory
 nnoremap <C-o> :e 
 inoremap <C-o> <ESC>:e 
@@ -36,32 +39,32 @@ inoremap <C-t> <ESC>:tabnew<CR>
 nnoremap <C-T> :tabnew 
 inoremap <C-T> <ESC>:tabnew 
 
-
 " binding for closing tabs
 nnoremap <C-w> :tabclose<CR>
 inoremap <C-w> <ESC>:tabclose<CR>
 
 " auto insert matching brace
 inoremap {<CR> {<CR>}<Esc>ko
-inoremap {<SPACE> {<SPACE><SPACE>}<Esc>hi
+inoremap {<SPACE> {<SPACE><SPACE>}<space><++><Esc>F{lli
 
 inoremap [<CR> [<CR>]<Esc>ko
-inoremap [<SPACE> [<SPACE><SPACE>]<Esc>hi
+inoremap [<SPACE> [<SPACE><SPACE>]<space><++><Esc>F[lli
 
 inoremap (<CR> (<CR>)<Esc>ko
-inoremap (<SPACE> (<SPACE><SPACE>)<Esc>hi
+inoremap (<SPACE> (<SPACE><SPACE>)<space><++><Esc>F(lli
 
 inoremap <<CR> <<CR>><Esc>ko
-inoremap <<SPACE> <<SPACE><SPACE>><Esc>hi
+inoremap <<SPACE> <<SPACE><SPACE>><space><++><Esc>0f<lli
 
 " auto insert matching quote
 inoremap """ """<CR>"""<Esc>ko
-inoremap " ""<Esc>i
+inoremap " ""<++><Esc>4hi
 inoremap ''' '''<CR>'''<Esc>ko
-inoremap ' ''<Esc>i
+inoremap ' ''<++><Esc>4hi
 
 " use tab to indent
 nnoremap <Tab> >>
 vnoremap <Tab> >>
 nnoremap <S-Tab> <<
 vnoremap <S-Tab> <<
+inoremap <S-Tab> <Esc><<i
