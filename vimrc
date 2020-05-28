@@ -1,7 +1,21 @@
+" misc settings
 set number
 set nocompatible
 syntax on
 colorscheme monokai
+set showcmd
+
+" enable filetype plugin
+filetype plugin on
+
+" automatically set makeprg variable depending on filetype
+au FileType c,cpp,h,hpp set makeprg=./make
+au FileType py          set makeprg=python3\ expand('%:p')
+au FileType rs          set makeprg=cargo\ build
+
+" keybind to execute makprg
+nnoremap <F5> :make<CR>
+inoremap <F5> <Esc>:make<CR>
 
 " indentation settings
 set tabstop=4
@@ -21,9 +35,15 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 " auto generate tags on save
 au BufWritePost *.py,*.c,*.cpp,*.h,*.hpp silent! !eval 'ctags -R -o newtags; mv newtags tags' &
 
-" set font if in gvim
+" autoset makeprg depending on filetype
+
+" set font and colorscheme if in gvim
 if has( "gui_running" )
     set guifont=Jetbrains\ Mono\ Regular\ 11
+else
+    " else if in terminal vim, bind Ctrl+Arrow Keys to next/previous tabs
+    nnoremap <C-Right> gt
+    nnoremap <C-Left> gT
 endif
 
 " keep current line in above or equal to centre of screen
