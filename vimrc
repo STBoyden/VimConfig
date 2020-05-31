@@ -1,5 +1,5 @@
 " misc settings
-set number
+set relativenumber
 set nocompatible
 syntax on
 colorscheme monokai
@@ -102,3 +102,12 @@ vnoremap <Tab> >>
 nnoremap <S-Tab> <<
 vnoremap <S-Tab> <<
 inoremap <S-Tab> <Esc><<i
+
+" plugins
+
+call plug#begin( '~/.vim/plugged' )
+
+Plug 'rust-lang/rust.vim'
+Plug 'tpope/vim-commentary'
+
+call plug#end(  ) 
