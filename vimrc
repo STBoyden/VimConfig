@@ -1,9 +1,11 @@
 " misc settings
 set relativenumber
+set number
 set nocompatible
 syntax on
 colorscheme monokai
 set showcmd
+set nohlsearch
 
 " enable filetype plugin
 filetype plugin on
@@ -11,11 +13,11 @@ filetype plugin on
 " automatically set makeprg variable depending on filetype
 au FileType c,cpp,h,hpp set makeprg=./make
 au FileType py          set makeprg=python3\ expand('%:p')
-au FileType rs          set makeprg=cargo\ build
+au FileType rs          set makeprg=cargo\ run
 
 " keybind to execute makprg
 nnoremap <F5> :make<CR>
-inoremap <F5> <Esc>:make<CR>
+inoremap <F5> <ESC>:make<CR>
 
 " indentation settings
 set tabstop=4
@@ -31,19 +33,24 @@ let g:netrw_liststyle=3
 let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
+" binding for a new terminal tab
+nnoremap <A-t> :tabnew term://fish<CR>A
+inoremap <A-t> <ESC>:tabnew term://fish<CR>A
+tnoremap <A-t> <C-\><C-n>:tabnew term://fish<CR>A
+
+" map escape to C-\ C-n while in terminal mode
+tnoremap <ESC> <C-\><C-n>
 
 " auto generate tags on save
 au BufWritePost *.py,*.c,*.cpp,*.h,*.hpp silent! !eval 'ctags -R -o newtags; mv newtags tags' &
-
-" autoset makeprg depending on filetype
 
 " set font and colorscheme if in gvim
 if has( "gui_running" )
     set guifont=Jetbrains\ Mono\ Regular\ 11
 else
-    " else if in terminal vim, bind Ctrl+Arrow Keys to next/previous tabs
-    nnoremap <C-Right> gt
-    nnoremap <C-Left> gT
+    " else if in terminal vim, bind Ctrl+h & Ctrl-l Keys to next/previous tabs
+    nnoremap <C-h> gT
+    nnoremap <C-l> gt
 endif
 
 " keep current line in above or equal to centre of screen
@@ -55,7 +62,7 @@ nnoremap n nzz
 nnoremap N Nzz
 
 " bindings to jump to specific point
-inoremap <Bslash><Bslash> <Esc>/<++><Enter>"_c4l
+inoremap <Bslash><Bslash> <ESC>/<++><CR>"_c4l
 
 " bindings for opening a file in the current working directory
 nnoremap <C-o> :e 
@@ -65,7 +72,7 @@ inoremap <C-o> <ESC>:e
 nnoremap <C-q> :enew\|bdelete# <CR>
 inoremap <C-q> <ESC>:enew\|bdelete# <CR>
 nnoremap <S-C-q> :q<CR>
-inoremap <S-C-q> <Esc>:q<CR>
+inoremap <S-C-q> <ESC>:q<CR>
 
 " bindings for opening tabs
 nnoremap <C-t> :tabnew<CR>
@@ -76,32 +83,33 @@ inoremap <C-T> <ESC>:tabnew
 " binding for closing tabs
 nnoremap <C-w> :tabclose<CR>
 inoremap <C-w> <ESC>:tabclose<CR>
+tnoremap <C-w> <C-\><C-n>:tabclose<CR>
 
 " auto insert matching brace
-inoremap {<CR> {<CR>}<Esc>ko
-inoremap {<SPACE> {<SPACE><SPACE>}<space><++><Esc>F{lli
+inoremap {<CR> {<CR>}<ESC>ko
+inoremap {<SPACE> {<SPACE><SPACE>}<SPACE><++><ESC>F{lli
 
-inoremap [<CR> [<CR>]<Esc>ko
-inoremap [<SPACE> [<SPACE><SPACE>]<space><++><Esc>F[lli
+inoremap [<CR> [<CR>]<ESC>ko
+inoremap [<SPACE> [<SPACE><SPACE>]<SPACE><++><ESC>F[lli
 
-inoremap (<CR> (<CR>)<Esc>ko
-inoremap (<SPACE> (<SPACE><SPACE>)<space><++><Esc>F(lli
+inoremap (<CR> (<CR>)<ESC>ko
+inoremap (<SPACE> (<SPACE><SPACE>)<SPACE><++><ESC>F(lli
 
-inoremap <<CR> <<CR>><Esc>ko
-inoremap <<SPACE> <<SPACE><SPACE>><space><++><Esc>0f<lli
+inoremap <<CR> <<CR>><ESC>ko
+inoremap <<SPACE> <<SPACE><SPACE>><SPACE><++><ESC>0f<lli
 
 " auto insert matching quote
-inoremap """ """<CR>"""<Esc>ko
-inoremap " ""<++><Esc>4hi
-inoremap ''' '''<CR>'''<Esc>ko
-inoremap ' ''<++><Esc>4hi
+inoremap """ """<CR>"""<ESC>ko
+inoremap " ""<++><ESC>4hi
+inoremap ''' '''<CR>'''<ESC>ko
+inoremap ' ''<++><ESC>4hi
 
 " use tab to indent
 nnoremap <Tab> >>
 vnoremap <Tab> >>
 nnoremap <S-Tab> <<
 vnoremap <S-Tab> <<
-inoremap <S-Tab> <Esc><<i
+inoremap <S-Tab> <ESC><<i
 
 " plugins
 
