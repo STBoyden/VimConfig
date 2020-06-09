@@ -16,25 +16,16 @@ set undofile
 set incsearch
 set colorcolumn=100
 let mapleader=" "
+set backspace=indent,eol,start
 
 " enable filetype plugin
 filetype plugin on
-
-" automatically set makeprg variable depending on filetype
-au FileType c,cpp,h,hpp set makeprg=./make
-au FileType py          set makeprg=python3\ expand('%:p')
-au FileType rs          set makeprg=cargo\ run
-
-" keybind to execute makprg
-" nnoremap <F5> :make<CR>
-" inoremap <F5> <ESC>:make<CR>
 
 " split navigation rebinds
 nnoremap <Leader>h :wincmd h<CR>
 nnoremap <Leader>j :wincmd j<CR>
 nnoremap <Leader>k :wincmd k<CR>
 nnoremap <Leader>l :wincmd l<CR>
-nnoremap <Leader>\ :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <Leader><bar> :wincmd v<CR>:wincmd l<CR>:enew<CR>
 nnoremap <A-p> :Rg<Space>
 
@@ -57,11 +48,12 @@ nnoremap <A-t> :tabnew term://zsh<CR>A
 inoremap <A-t> <ESC>:tabnew term://zsh<CR>A
 tnoremap <A-t> <C-\><C-n>:tabnew term://zsh<CR>A
 
+" bind Control+s to :w
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <ESC>:w<CR>
+
 " map escape to C-\ C-n while in terminal mode
 tnoremap <ESC> <C-\><C-n>
-
-" auto generate tags on save
-" au BufWritePost *.py,*.c,*.cpp,*.h,*.hpp silent! !eval 'ctags -R -o newtags; mv newtags tags' &
 
 " set font and colorscheme if in gvim
 if has( "gui_running" )
@@ -79,9 +71,6 @@ nnoremap gg ggzz
 nnoremap G Gzz
 nnoremap n nzz
 nnoremap N Nzz
-
-" bindings to jump to specific point
-" inoremap <Bslash><Bslash> <ESC>/<++><CR>"_c4l
 
 " bindings for opening a file in the current working directory
 nnoremap <C-o> :e 
@@ -104,26 +93,7 @@ nnoremap <C-w> :tabclose<CR>
 inoremap <C-w> <ESC>:tabclose<CR>
 tnoremap <C-w> <C-\><C-n>:tabclose<CR>
 
-" auto insert matching brace
-" inoremap {<CR> {<CR>}<ESC>ko
-" inoremap {<SPACE> {<SPACE><SPACE>}<SPACE><++><ESC>F{lli
-
-" inoremap [<CR> [<CR>]<ESC>ko
-" inoremap [<SPACE> [<SPACE><SPACE>]<SPACE><++><ESC>F[lli
-
-" inoremap (<CR> (<CR>)<ESC>ko
-" inoremap (<SPACE> (<SPACE><SPACE>)<SPACE><++><ESC>F(lli
-
-" inoremap <<CR> <<CR>><ESC>ko
-" inoremap <<SPACE> <<SPACE><SPACE>><SPACE><++><ESC>0f<lli
-
-" auto insert matching quote
-" inoremap """ """<CR>"""<ESC>ko
-" inoremap " ""<++><ESC>4hi
-" inoremap ''' '''<CR>'''<ESC>ko
-" inoremap ' ''<++><ESC>4hi
-
-" use tab to indent
+" use tab key to indent
 nnoremap <Tab> >>
 vnoremap <Tab> >>
 nnoremap <S-Tab> <<
@@ -131,7 +101,6 @@ vnoremap <S-Tab> <<
 inoremap <S-Tab> <ESC><<i
 
 " plugins
-
 call plug#begin( '~/.vim/plugged' )
 
 Plug 'rust-lang/rust.vim'
@@ -143,10 +112,19 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'thaerkh/vim-indentguides'
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 call plug#end(  ) 
 
 " --- plugin specific bindings --- 
+
+" toggle NERDTree
+nnoremap <C-b> :NERDTreeToggle<CR>
+
+" list opened files
+nnoremap <C-\> :W<CR>
 
 " jump to definition and jump to references
 nmap <Leader>gd <Plug>(coc-definition)
@@ -159,6 +137,14 @@ nnoremap <C-p> :GFiles<CR>
 " binding for commenting out lines
 nnoremap // :Commentary<CR>
 inoremap // <ESC>:Commentary<CR>i
+
+" --- plugin specific settings ---
+
+" autoclose vim when NERDTree is the last buffer
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" autorun rustfmt on save
+let g:rustfmt_autosave=1
 
 if executable('rg')
     let g:rg_derive_root='true'
