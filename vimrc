@@ -48,6 +48,9 @@ nnoremap <A-t> :tabnew term://zsh<CR>A
 inoremap <A-t> <ESC>:tabnew term://zsh<CR>A
 tnoremap <A-t> <C-\><C-n>:tabnew term://zsh<CR>A
 
+" when entering a terminal buffer, disable numbers and releative numbers
+au BufEnter * if &buftype == 'terminal' | setlocal nonumber | setlocal norelativenumber | endif
+
 " bind Control+s to :w
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <ESC>:w<CR>
@@ -121,7 +124,7 @@ call plug#end(  )
 " --- plugin specific bindings --- 
 
 " toggle NERDTree
-nnoremap <C-b> :NERDTreeToggle<CR>
+map <C-b> :NERDTreeToggle<CR>
 
 " list opened files
 nnoremap <C-\> :W<CR>
