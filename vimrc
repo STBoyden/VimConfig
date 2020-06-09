@@ -1,4 +1,5 @@
 " misc settings
+set noerrorbells
 set relativenumber
 set number
 set nocompatible
@@ -6,6 +7,15 @@ syntax on
 colorscheme monokai
 set showcmd
 set nohlsearch
+set nowrap
+set smartcase
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set incsearch
+set colorcolumn=100
+let mapleader=" "
 
 " enable filetype plugin
 filetype plugin on
@@ -16,8 +26,17 @@ au FileType py          set makeprg=python3\ expand('%:p')
 au FileType rs          set makeprg=cargo\ run
 
 " keybind to execute makprg
-nnoremap <F5> :make<CR>
-inoremap <F5> <ESC>:make<CR>
+" nnoremap <F5> :make<CR>
+" inoremap <F5> <ESC>:make<CR>
+
+" split navigation rebinds
+nnoremap <Leader>h :wincmd h<CR>
+nnoremap <Leader>j :wincmd j<CR>
+nnoremap <Leader>k :wincmd k<CR>
+nnoremap <Leader>l :wincmd l<CR>
+nnoremap <Leader>\ :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap <Leader><bar> :wincmd v<CR>:wincmd l<CR>:enew<CR>
+nnoremap <A-p> :Rg<Space>
 
 " indentation settings
 set tabstop=4
@@ -34,15 +53,15 @@ let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 " binding for a new terminal tab
-nnoremap <A-t> :tabnew term://fish<CR>A
-inoremap <A-t> <ESC>:tabnew term://fish<CR>A
-tnoremap <A-t> <C-\><C-n>:tabnew term://fish<CR>A
+nnoremap <A-t> :tabnew term://zsh<CR>A
+inoremap <A-t> <ESC>:tabnew term://zsh<CR>A
+tnoremap <A-t> <C-\><C-n>:tabnew term://zsh<CR>A
 
 " map escape to C-\ C-n while in terminal mode
 tnoremap <ESC> <C-\><C-n>
 
 " auto generate tags on save
-au BufWritePost *.py,*.c,*.cpp,*.h,*.hpp silent! !eval 'ctags -R -o newtags; mv newtags tags' &
+" au BufWritePost *.py,*.c,*.cpp,*.h,*.hpp silent! !eval 'ctags -R -o newtags; mv newtags tags' &
 
 " set font and colorscheme if in gvim
 if has( "gui_running" )
@@ -62,7 +81,7 @@ nnoremap n nzz
 nnoremap N Nzz
 
 " bindings to jump to specific point
-inoremap <Bslash><Bslash> <ESC>/<++><CR>"_c4l
+" inoremap <Bslash><Bslash> <ESC>/<++><CR>"_c4l
 
 " bindings for opening a file in the current working directory
 nnoremap <C-o> :e 
@@ -86,23 +105,23 @@ inoremap <C-w> <ESC>:tabclose<CR>
 tnoremap <C-w> <C-\><C-n>:tabclose<CR>
 
 " auto insert matching brace
-inoremap {<CR> {<CR>}<ESC>ko
-inoremap {<SPACE> {<SPACE><SPACE>}<SPACE><++><ESC>F{lli
+" inoremap {<CR> {<CR>}<ESC>ko
+" inoremap {<SPACE> {<SPACE><SPACE>}<SPACE><++><ESC>F{lli
 
-inoremap [<CR> [<CR>]<ESC>ko
-inoremap [<SPACE> [<SPACE><SPACE>]<SPACE><++><ESC>F[lli
+" inoremap [<CR> [<CR>]<ESC>ko
+" inoremap [<SPACE> [<SPACE><SPACE>]<SPACE><++><ESC>F[lli
 
-inoremap (<CR> (<CR>)<ESC>ko
-inoremap (<SPACE> (<SPACE><SPACE>)<SPACE><++><ESC>F(lli
+" inoremap (<CR> (<CR>)<ESC>ko
+" inoremap (<SPACE> (<SPACE><SPACE>)<SPACE><++><ESC>F(lli
 
-inoremap <<CR> <<CR>><ESC>ko
-inoremap <<SPACE> <<SPACE><SPACE>><SPACE><++><ESC>0f<lli
+" inoremap <<CR> <<CR>><ESC>ko
+" inoremap <<SPACE> <<SPACE><SPACE>><SPACE><++><ESC>0f<lli
 
 " auto insert matching quote
-inoremap """ """<CR>"""<ESC>ko
-inoremap " ""<++><ESC>4hi
-inoremap ''' '''<CR>'''<ESC>ko
-inoremap ' ''<++><ESC>4hi
+" inoremap """ """<CR>"""<ESC>ko
+" inoremap " ""<++><ESC>4hi
+" inoremap ''' '''<CR>'''<ESC>ko
+" inoremap ' ''<++><ESC>4hi
 
 " use tab to indent
 nnoremap <Tab> >>
@@ -117,6 +136,29 @@ call plug#begin( '~/.vim/plugged' )
 
 Plug 'rust-lang/rust.vim'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'jremmen/vim-ripgrep'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end(  ) 
+
+" --- plugin specific bindings --- 
+
+" jump to definition and jump to references
+nmap <Leader>gd <Plug>(coc-definition)
+nmap <Leader>gr <Plug>(coc-references)
+nmap <F2> <Plug>(coc-rename)
+
+" open file search
+nnoremap <C-p> :GFiles<CR>
+
+" binding for commenting out lines
+nnoremap // :Commentary<CR>
+inoremap // <ESC>:Commentary<CR>i
+
+if executable('rg')
+    let g:rg_derive_root='true'
+endif
