@@ -27,7 +27,7 @@ nnoremap <Leader>j :wincmd j<CR>
 nnoremap <Leader>k :wincmd k<CR>
 nnoremap <Leader>l :wincmd l<CR>
 nnoremap <Leader><bar> :wincmd v<CR>:wincmd l<CR>:enew<CR>
-nnoremap <A-p> :Rg<Space>
+nnoremap <Leader>p :Rg<Space>
 
 " indentation settings
 set tabstop=4
@@ -118,6 +118,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'thaerkh/vim-indentguides'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'OmniSharp/omnisharp-vim'
 
 call plug#end(  ) 
 
