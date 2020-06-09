@@ -4,7 +4,7 @@ set relativenumber
 set number
 set nocompatible
 syntax on
-colorscheme monokai
+colorscheme codedark
 set showcmd
 set nohlsearch
 set nowrap
@@ -142,6 +142,7 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end(  ) 
 
