@@ -47,9 +47,10 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 nnoremap <A-t> :tabnew term://zsh<CR>A
 inoremap <A-t> <ESC>:tabnew term://zsh<CR>A
 tnoremap <A-t> <C-\><C-n>:tabnew term://zsh<CR>A
+nnoremap <A-\> :wincmd v<CR>:wincmd l<CR>:term<CR>:setlocal nonumber norelativenumber<CR>A
 
 " when entering a terminal buffer, disable numbers and releative numbers
-au BufEnter * if &buftype == 'terminal' | setlocal nonumber | setlocal norelativenumber | endif
+au BufEnter,TabEnter,WinEnter * if &buftype == 'terminal' | setlocal nonumber | setlocal norelativenumber | endif
 
 " bind Control+s to :w
 nnoremap <C-s> :w<CR>
@@ -119,6 +120,7 @@ Plug 'thaerkh/vim-indentguides'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'OmniSharp/omnisharp-vim'
+Plug 'vim-airline/vim-airline'
 
 call plug#end(  ) 
 
@@ -146,6 +148,10 @@ inoremap // <ESC>:Commentary<CR>i
 
 " autoclose vim when NERDTree is the last buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" set indent guide character
+let g:indentguides_spacechar='│'
+let g:indentguides_tabchar='│'
 
 " autorun rustfmt on save
 let g:rustfmt_autosave=1
