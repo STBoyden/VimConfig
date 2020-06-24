@@ -4,7 +4,8 @@ set relativenumber
 set number
 set nocompatible
 syntax on
-colorscheme codedark
+set termguicolors
+colorscheme base16-spacemacs
 set showcmd
 set nohlsearch
 set nowrap
@@ -17,6 +18,11 @@ set incsearch
 set colorcolumn=100
 let mapleader=" "
 set backspace=indent,eol,start
+
+if filereadable(expand("~/.vimrc_background"))
+    let base16colorspace=256
+    source ~/.vimrc_background
+endif
 
 " enable filetype plugin
 filetype plugin on
@@ -81,21 +87,23 @@ nnoremap <C-o> :e
 inoremap <C-o> <ESC>:e 
 
 " bindings for closing current buffer and creating a new empty one
-nnoremap <C-q> :enew\|bdelete# <CR>
-inoremap <C-q> <ESC>:enew\|bdelete# <CR>
-nnoremap <S-C-q> :q<CR>
-inoremap <S-C-q> <ESC>:q<CR>
+nnoremap qQ :enew\|bdelete# <CR>
+inoremap qQ <ESC>:enew\|bdelete# <CR>
+nnoremap QQ :q<CR>
+inoremap QQ <ESC>:q<CR>
 
 " bindings for opening tabs
-nnoremap <C-t> :tabnew<CR>
-inoremap <C-t> <ESC>:tabnew<CR>
-nnoremap <C-T> :tabnew 
-inoremap <C-T> <ESC>:tabnew 
+" inoremap <C-t> <ESC>:tabnew<CR>
+" nnoremap <C-T> :tabnew 
+" inoremap <C-T> <ESC>:tabnew 
+" nnoremap <C-t> :tabnew<CR>
+nnoremap qt :tabnew<CR>:e 
+inoremap qt <ESC>:tabnew<CR>:e 
 
 " binding for closing tabs
-nnoremap <C-w> :tabclose<CR>
-inoremap <C-w> <ESC>:tabclose<CR>
-tnoremap <C-w> <C-\><C-n>:tabclose<CR>
+nnoremap qq :tabclose<CR>
+inoremap qq <ESC>:tabclose<CR>
+tnoremap qq <C-\><C-n>:tabclose<CR>
 
 " use tab key to indent
 nnoremap <Tab> >>
@@ -117,17 +125,20 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'thaerkh/vim-indentguides'
-Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'vim-airline/vim-airline'
+Plug 'mhinz/vim-startify'
+Plug 'airblade/vim-rooter'
+" Plug 'preservim/nerdtree'
+" Plug 'chriskempson/base16-vim'
 
 call plug#end(  ) 
 
 " --- plugin specific bindings --- 
 
 " toggle NERDTree
-map <C-b> :NERDTreeToggle<CR>
+" map <C-b> :NERDTreeToggle<CR>
 
 " list opened files
 nnoremap <C-\> :W<CR>
@@ -136,18 +147,22 @@ nnoremap <C-\> :W<CR>
 nmap <Leader>gd <Plug>(coc-definition)
 nmap <Leader>gr <Plug>(coc-references)
 nmap <F2> <Plug>(coc-rename)
+map <C-b> :CocCommand explorer<CR>
 
 " open file search
 nnoremap <C-p> :GFiles<CR>
 
 " binding for commenting out lines
-nnoremap // :Commentary<CR>
-inoremap // <ESC>:Commentary<CR>i
+nnoremap ## :Commentary<CR>
+inoremap ## <ESC>:Commentary<CR>i
 
 " --- plugin specific settings ---
 
 " autoclose vim when NERDTree is the last buffer
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+
+let g:rooter_change_directory_for_non_project_files = 'current'
 
 " set indent guide character
 let g:indentguides_spacechar='│'
