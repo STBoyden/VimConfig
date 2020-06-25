@@ -50,10 +50,10 @@ let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 " binding for a new terminal tab
-nnoremap <A-t> :tabnew term://zsh<CR>A
-inoremap <A-t> <ESC>:tabnew term://zsh<CR>A
-tnoremap <A-t> <C-\><C-n>:tabnew term://zsh<CR>A
-nnoremap <A-\> :wincmd v<CR>:wincmd l<CR>:term<CR>:setlocal nonumber norelativenumber<CR>A
+" nnoremap <A-t> :tabnew term://zsh<CR>A
+" inoremap <A-t> <ESC>:tabnew term://zsh<CR>A
+" tnoremap <A-t> <C-\><C-n>:tabnew term://zsh<CR>A
+" nnoremap <A-\> :wincmd v<CR>:wincmd l<CR>:term<CR>:setlocal nonumber norelativenumber<CR>A
 
 " when entering a terminal buffer, disable numbers and releative numbers
 au BufEnter,TabEnter,WinEnter * if &buftype == 'terminal' | setlocal nonumber | setlocal norelativenumber | endif
@@ -86,11 +86,15 @@ nnoremap N Nzz
 nnoremap <C-o> :e 
 inoremap <C-o> <ESC>:e 
 
-" bindings for closing current buffer and creating a new empty one
+" bindings for closing current buffer and creating a new empty one and closing
+" tabs
 nnoremap qQ :enew\|bdelete# <CR>
 inoremap qQ <ESC>:enew\|bdelete# <CR>
-nnoremap QQ :q<CR>
-inoremap QQ <ESC>:q<CR>
+nnoremap qq :q<CR>
+inoremap qq <ESC>:q<CR>
+nnoremap QQ :tabclose<CR>
+inoremap QQ <ESC>:tabclose<CR>
+tnoremap QQ <C-\><C-n>:tabclose<CR>
 
 " bindings for opening tabs
 " inoremap <C-t> <ESC>:tabnew<CR>
@@ -101,9 +105,6 @@ nnoremap qt :tabnew<CR>:e
 inoremap qt <ESC>:tabnew<CR>:e 
 
 " binding for closing tabs
-nnoremap qq :tabclose<CR>
-inoremap qq <ESC>:tabclose<CR>
-tnoremap qq <C-\><C-n>:tabclose<CR>
 
 " use tab key to indent
 nnoremap <Tab> >>
@@ -130,6 +131,8 @@ Plug 'OmniSharp/omnisharp-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'mhinz/vim-startify'
 Plug 'airblade/vim-rooter'
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'voldikss/vim-floaterm'
 " Plug 'preservim/nerdtree'
 " Plug 'chriskempson/base16-vim'
 
@@ -151,6 +154,7 @@ map <C-b> :CocCommand explorer<CR>
 
 " open file search
 nnoremap <C-p> :GFiles<CR>
+map <A-p> :FZF<CR>
 
 " binding for commenting out lines
 nnoremap ## :Commentary<CR>
@@ -162,7 +166,13 @@ inoremap ## <ESC>:Commentary<CR>i
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
+augroup rainbow
+    autocmd FileType rust,cpp,c,h,hpp,cs,py,js,ts,vim,cfg RainbowParentheses
+augroup END
+
 let g:rooter_change_directory_for_non_project_files = 'current'
+
+let g:AutoPairsShortcutToggle = ''
 
 " set indent guide character
 let g:indentguides_spacechar='│'
@@ -174,3 +184,6 @@ let g:rustfmt_autosave=1
 if executable('rg')
     let g:rg_derive_root='true'
 endif
+
+nmap <F1> :FloatermToggle<CR>
+imap <F1> <ESC>:FloatermToggle<CR>
