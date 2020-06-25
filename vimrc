@@ -133,6 +133,7 @@ Plug 'mhinz/vim-startify'
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'voldikss/vim-floaterm'
+Plug 'aurieh/discord.nvim', {'do' : ':UpdateRemotePlugins'}
 " Plug 'preservim/nerdtree'
 " Plug 'chriskempson/base16-vim'
 
@@ -187,3 +188,4 @@ endif
 
 nmap <F1> :FloatermToggle<CR>
 imap <F1> <ESC>:FloatermToggle<CR>
+tmap <F1> <ESC>:FloatermToggle<CR>
