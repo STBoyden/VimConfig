@@ -1,7 +1,7 @@
 {
   "coc.preferences.extensionUpdateCheck": "daily",
   "rust-analyzer.serverPath": "/home/samuel/.cargo/bin/rust-analyzer",
-  "explorer.width": 40,
+  "explorer.width": 30,
   "explorer.file.autoReveal": true,
   "explorer.keyMappings": {
       "v": "open:vsplit"

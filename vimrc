@@ -3,9 +3,9 @@ set noerrorbells
 set relativenumber
 set number
 set nocompatible
+set mouse=a
 syntax on
 set termguicolors
-colorscheme base16-spacemacs
 set showcmd
 set nohlsearch
 set nowrap
@@ -15,7 +15,7 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
-set colorcolumn=100
+set colorcolumn=120
 let mapleader=" "
 set backspace=indent,eol,start
 
@@ -134,6 +134,7 @@ Plug 'airblade/vim-rooter'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'aurieh/discord.nvim', {'do' : ':UpdateRemotePlugins'}
+Plug 'dawikur/base16-vim-airline-themes'
 " Plug 'preservim/nerdtree'
 " Plug 'chriskempson/base16-vim'
 
