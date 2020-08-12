@@ -18,11 +18,18 @@ set incsearch
 set colorcolumn=120
 let mapleader=" "
 set backspace=indent,eol,start
+let ayucolor="dark"
+" set term=screen-256color
 
 if filereadable(expand("~/.vimrc_background"))
     let base16colorspace=256
     source ~/.vimrc_background
+else
+    colorscheme base16-materia
 endif
+
+hi NonText guifg=bg
+hi vertsplit guifg=fg guibg=bg
 
 " enable filetype plugin
 filetype plugin on
@@ -57,6 +64,9 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 " when entering a terminal buffer, disable numbers and releative numbers
 au BufEnter,TabEnter,WinEnter * if &buftype == 'terminal' | setlocal nonumber | setlocal norelativenumber | endif
+
+" Organise imports on save
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " bind Control+s to :w
 nnoremap <C-s> :w<CR>
@@ -128,13 +138,19 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'thaerkh/vim-indentguides'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'OmniSharp/omnisharp-vim'
-Plug 'vim-airline/vim-airline'
 Plug 'mhinz/vim-startify'
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'aurieh/discord.nvim', {'do' : ':UpdateRemotePlugins'}
-Plug 'dawikur/base16-vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+Plug 'ayu-theme/ayu-vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'elmcast/elm-vim'
+" Plug 'dawikur/base16-vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
 " Plug 'preservim/nerdtree'
 " Plug 'chriskempson/base16-vim'
 
@@ -171,6 +187,17 @@ autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | end
 augroup rainbow
     autocmd FileType rust,cpp,c,h,hpp,cs,py,js,ts,vim,cfg RainbowParentheses
 augroup END
+
+let g:lightline = {
+    \ 'colorscheme': 'ayu_dark',
+    \ 'active': {
+    \   'left':[['mode', 'paste'],
+    \           ['gitbranch', 'readonly', 'filename', 'modified']]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'FugitiveHead'
+    \ },
+    \ }
 
 let g:rooter_change_directory_for_non_project_files = 'current'
 
