@@ -149,6 +149,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'elmcast/elm-vim'
+Plug 'gilligan/vim-lldb'
 " Plug 'dawikur/base16-vim-airline-themes'
 " Plug 'vim-airline/vim-airline'
 " Plug 'preservim/nerdtree'
@@ -183,6 +184,11 @@ inoremap ## <ESC>:Commentary<CR>i
 " autoclose vim when NERDTree is the last buffer
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+
+autocmd FileType rust nnoremap mm :make build<CR>
+autocmd FileType rust nnoremap MM :make build --release<CR>
+autocmd FileType rust nnoremap mr :make run<CR>
+autocmd FileType rust nnoremap MR :make run --release<CR>
 
 augroup rainbow
     autocmd FileType rust,cpp,c,h,hpp,cs,py,js,ts,vim,cfg RainbowParentheses
