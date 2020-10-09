@@ -137,7 +137,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'thaerkh/vim-indentguides'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'mhinz/vim-startify'
 Plug 'airblade/vim-rooter'
@@ -151,10 +150,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'elmcast/elm-vim'
 Plug 'gilligan/vim-lldb'
-" Plug 'dawikur/base16-vim-airline-themes'
-" Plug 'vim-airline/vim-airline'
-" Plug 'preservim/nerdtree'
-" Plug 'chriskempson/base16-vim'
+Plug 'preservim/tagbar'
+Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 
 call plug#end(  ) 
 
@@ -175,6 +172,9 @@ map <C-b> :CocCommand explorer<CR>
 " open file search
 nnoremap <C-p> :GFiles<CR>
 map <A-p> :FZF<CR>
+
+nmap <F8> :TagbarToggle<CR>
+nmap <F7> :MinimapToggle<CR>
 
 " binding for commenting out lines
 nnoremap ## :Commentary<CR>
@@ -214,6 +214,8 @@ let g:AutoPairsShortcutToggle = ''
 let g:indentguides_spacechar='│'
 let g:indentguides_tabchar='│'
 
+" set to nightly rustfmt
+let g:rustfmt_command="~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rustfmt"
 " autorun rustfmt on save
 let g:rustfmt_autosave=1
 
