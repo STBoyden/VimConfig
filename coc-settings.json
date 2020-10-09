@@ -1,6 +1,8 @@
 {
   "coc.preferences.extensionUpdateCheck": "daily",
   "rust-analyzer.serverPath": "/home/samuel/.cargo/bin/rust-analyzer",
+  "rust-analyzer.inlayHints.refreshOnInsertMode": true,
+  "rust-analyzer.cargo.allFeatures": true,
   "explorer.width": 30,
   "explorer.file.autoReveal": true,
   "explorer.keyMappings": {

@@ -18,14 +18,15 @@ set incsearch
 set colorcolumn=120
 let mapleader=" "
 set backspace=indent,eol,start
-let ayucolor="dark"
+" let ayucolor="dark"
 " set term=screen-256color
 
 if filereadable(expand("~/.vimrc_background"))
     let base16colorspace=256
     source ~/.vimrc_background
 else
-    colorscheme base16-materia
+    " colorscheme base16-materia
+   colorscheme base16-tomorrow-night-black
 endif
 
 hi NonText guifg=bg
@@ -195,7 +196,7 @@ augroup rainbow
 augroup END
 
 let g:lightline = {
-    \ 'colorscheme': 'ayu_dark',
+    \ 'colorscheme': 'Tomorrow_Night_Bright',
     \ 'active': {
     \   'left':[['mode', 'paste'],
     \           ['gitbranch', 'readonly', 'filename', 'modified']]
@@ -223,3 +224,5 @@ endif
 nmap <F1> :FloatermToggle<CR>
 imap <F1> <ESC>:FloatermToggle<CR>
 tmap <F1> <ESC>:FloatermToggle<CR>
+
+nnoremap '' :setlocal nu!<CR>:setlocal rnu!<CR>
