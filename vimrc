@@ -151,7 +151,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'elmcast/elm-vim'
 Plug 'gilligan/vim-lldb'
 Plug 'preservim/tagbar'
-Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+Plug 'rhysd/vim-clang-format'
 
 call plug#end(  ) 
 
@@ -174,7 +174,6 @@ nnoremap <C-p> :GFiles<CR>
 map <A-p> :FZF<CR>
 
 nmap <F8> :TagbarToggle<CR>
-nmap <F7> :MinimapToggle<CR>
 
 " binding for commenting out lines
 nnoremap ## :Commentary<CR>
@@ -194,6 +193,10 @@ autocmd FileType rust nnoremap MR :make run --release<CR>
 augroup rainbow
     autocmd FileType rust,cpp,c,h,hpp,cs,py,js,ts,vim,cfg RainbowParentheses
 augroup END
+
+autocmd FileType c,cpp ClangFormatAutoEnable
+
+let g:clang_format#code_style = "llvm"
 
 let g:lightline = {
     \ 'colorscheme': 'Tomorrow_Night_Bright',
