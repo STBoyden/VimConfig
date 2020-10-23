@@ -152,6 +152,9 @@ Plug 'elmcast/elm-vim'
 Plug 'gilligan/vim-lldb'
 Plug 'preservim/tagbar'
 Plug 'rhysd/vim-clang-format'
+Plug 'leafOfTree/vim-svelte-plugin'
+Plug 'mattn/emmet-vim'
+Plug 'HerringtonDarkholme/yats.vim'
 
 call plug#end(  ) 
 
