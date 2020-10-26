@@ -15,18 +15,15 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
-set colorcolumn=120
 let mapleader=" "
 set backspace=indent,eol,start
-" let ayucolor="dark"
-" set term=screen-256color
 
 if filereadable(expand("~/.vimrc_background"))
     let base16colorspace=256
     source ~/.vimrc_background
 else
     " colorscheme base16-materia
-   colorscheme base16-tomorrow-night-black
+   colorscheme base16-tomorrow-night-transparent
 endif
 
 hi NonText guifg=bg
