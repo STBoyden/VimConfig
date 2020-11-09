@@ -17,8 +17,8 @@ endif
 " GUI color definitions
 let s:gui00        = ""
 let g:base16_gui00 = ""
-let s:gui01        = ""
-let g:base16_gui01 = ""
+let s:gui01        = "00000000"
+let g:base16_gui01 = "00000000"
 let s:gui02        = "373b41"
 let g:base16_gui02 = "373b41"
 let s:gui03        = "969896"
