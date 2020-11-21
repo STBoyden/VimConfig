@@ -38,7 +38,6 @@ nnoremap <Leader>j :wincmd j<CR>
 nnoremap <Leader>k :wincmd k<CR>
 nnoremap <Leader>l :wincmd l<CR>
 nnoremap <Leader><bar> :wincmd v<CR>:wincmd l<CR>:enew<CR>
-nnoremap <Leader>p :Rg<Space>
 
 " indentation settings
 set tabstop=4
@@ -152,8 +151,18 @@ Plug 'rhysd/vim-clang-format'
 Plug 'leafOfTree/vim-svelte-plugin'
 Plug 'mattn/emmet-vim'
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'vim-syntastic/syntastic'
 
 call plug#end(  ) 
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " --- plugin specific bindings --- 
 
@@ -170,8 +179,8 @@ nmap <F2> <Plug>(coc-rename)
 map <C-b> :CocCommand explorer<CR>
 
 " open file search
-nnoremap <C-p> :GFiles<CR>
-map <A-p> :FZF<CR>
+map <C-p> :Buffers<CR>
+map <A-p> :GFiles<CR>
 
 nmap <F8> :TagbarToggle<CR>
 
@@ -195,6 +204,7 @@ augroup rainbow
 augroup END
 
 autocmd FileType c,cpp ClangFormatAutoEnable
+au BufEnter,BufNew *.h setfiletype c
 
 let g:clang_format#code_style = "llvm"
 
@@ -229,5 +239,9 @@ endif
 nmap <F1> :FloatermToggle<CR>
 imap <F1> <ESC>:FloatermToggle<CR>
 tmap <F1> <ESC>:FloatermToggle<CR>
+
+
+nmap <A-n><A-n> :CocAction<CR>
+imap <A-n><A-n> <Esc>:CocAction<CR>
 
 nnoremap '' :setlocal nu!<CR>:setlocal rnu!<CR>
