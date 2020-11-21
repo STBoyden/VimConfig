@@ -5,7 +5,7 @@
   "rust-analyzer.cargo.allFeatures": true,
   "explorer.width": 30,
   "explorer.file.autoReveal": true,
-  "explorer.keyMappings": {
+  "explorer.keyMappings.global": {
       "v": "open:vsplit"
   },
   
