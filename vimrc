@@ -152,6 +152,7 @@ Plug 'leafOfTree/vim-svelte-plugin'
 Plug 'mattn/emmet-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'vim-syntastic/syntastic'
+Plug 'octol/vim-cpp-enhanced-highlight'
 
 call plug#end(  ) 
 
