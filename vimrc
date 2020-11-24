@@ -153,6 +153,7 @@ Plug 'mattn/emmet-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'tbastos/vim-lua'
 
 call plug#end(  ) 
 
