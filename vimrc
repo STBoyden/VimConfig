@@ -66,8 +66,8 @@ au BufEnter,TabEnter,WinEnter * if &buftype == 'terminal' | setlocal nonumber | 
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " bind Control+s to :w
-nnoremap <C-s> ZZ<CR>
-inoremap <C-s> <ESC>ZZ<CR>
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <ESC>:w<CR>
 
 " map escape to C-\ C-n while in terminal mode
 tnoremap <ESC> <C-\><C-n>
