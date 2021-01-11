@@ -3,12 +3,13 @@
   "rust-analyzer.serverPath": "/home/samuel/.cargo/bin/rust-analyzer",
   "rust-analyzer.inlayHints.refreshOnInsertMode": true,
   "rust-analyzer.cargo.allFeatures": true,
+  "rust-analyzer.diagnostics.disabled": ["unresolved-proc-macro"],
   "explorer.width": 30,
   "explorer.file.autoReveal": true,
   "explorer.keyMappings.global": {
       "v": "open:vsplit"
   },
-  
+  "codeLens.enable": true,
   "languageserver": {
         "ccls": {
             "command": "ccls",
@@ -31,9 +32,15 @@
                     "directory": "/tmp/ccls"
                 }
             }
+        },
+        "elmLS": {
+            "command": "elm-language-server",
+            "filetypes": ["elm"],
+            "rootPatterns": ["elm.json"]
         }
     },
     "lua.enable": true,
     "lua.commandPath": "/usr/bin/lua-lsp",
     "lua.version": "5.4"
 }
+

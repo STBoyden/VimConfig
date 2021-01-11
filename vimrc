@@ -196,10 +196,8 @@ inoremap ## <ESC>:Commentary<CR>i
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
-autocmd FileType rust nnoremap mm :make build<CR>
-autocmd FileType rust nnoremap MM :make build --release<CR>
-autocmd FileType rust nnoremap mr :make run<CR>
-autocmd FileType rust nnoremap MR :make run --release<CR>
+autocmd FileType rust nnoremap <F5> :make run<CR>
+autocmd FileType rust nnoremap <F6> :make build<CR>
 
 augroup rainbow
     autocmd FileType rust,cpp,c,h,hpp,cs,py,js,ts,vim,cfg RainbowParentheses
