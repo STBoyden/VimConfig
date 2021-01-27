@@ -1,5 +1,6 @@
 {
   "coc.preferences.extensionUpdateCheck": "daily",
+  "coc.preferences.formatOnSaveFiletypes": ["elm"],
   "rust-analyzer.server.path": "/home/samuel/.cargo/bin/rust-analyzer",
   "rust-analyzer.inlayHints.refreshOnInsertMode": true,
   "rust-analyzer.cargo.allFeatures": true,

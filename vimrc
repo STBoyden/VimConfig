@@ -17,6 +17,8 @@ set undofile
 set incsearch
 let mapleader=" "
 set backspace=indent,eol,start
+set updatetime=300
+set cmdheight=2
 
 if filereadable(expand("~/.vimrc_background"))
     let base16colorspace=256
@@ -177,6 +179,8 @@ nnoremap <C-\> :W<CR>
 " jump to definition and jump to references
 nmap <Leader>gd <Plug>(coc-definition)
 nmap <Leader>gr <Plug>(coc-references)
+nmap <Leader>gi <Plug>(coc-implementation)
+nmap <Leader>gt <Plug>(coc-type-definition)
 nmap <F2> <Plug>(coc-rename)
 map <C-b> :CocCommand explorer<CR>
 
@@ -219,6 +223,19 @@ let g:lightline = {
     \ },
     \ }
 
+let g:tagbar_type_elm = {
+    \ 'kinds' : [
+    \   'f:function:0:0',
+    \   'm:modules:0:0',
+    \   'i:imports:1:0',
+    \   't:types:1:0',
+    \   'a:type aliases:0:0',
+    \   'c:type constructors:0:0',
+    \   'p:ports:0:0',
+    \   's:functions:0:0',
+    \ ]
+    \}
+
 let g:rooter_change_directory_for_non_project_files = 'current'
 
 let g:AutoPairsShortcutToggle = ''
@@ -245,3 +262,11 @@ nmap <A-n><A-n> :CocAction<CR>
 imap <A-n><A-n> <Esc>:CocAction<CR>
 
 nnoremap '' :setlocal nu!<CR>:setlocal rnu!<CR>
+
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
