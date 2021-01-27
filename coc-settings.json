@@ -1,6 +1,6 @@
 {
   "coc.preferences.extensionUpdateCheck": "daily",
-  "rust-analyzer.serverPath": "/home/samuel/.cargo/bin/rust-analyzer",
+  "rust-analyzer.server.path": "/home/samuel/.cargo/bin/rust-analyzer",
   "rust-analyzer.inlayHints.refreshOnInsertMode": true,
   "rust-analyzer.cargo.allFeatures": true,
   "rust-analyzer.diagnostics.disabled": ["unresolved-proc-macro"],
