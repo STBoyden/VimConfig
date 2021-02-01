@@ -243,7 +243,7 @@ let g:rooter_change_directory_for_non_project_files = 'current'
 
 let g:AutoPairsShortcutToggle = ''
 
-let g:formatdef_my_custom_cs = '"astyle --mode=cs --style=1tbs -pcHs".&shiftwidth'
+let g:formatdef_my_custom_cs = '"astyle --mode=cs --style=1tbs --delete-empty-lines -z2 -xn -xc -xl -xk -xV -xj -pUCNcHs".&shiftwidth'
 let g:formatters_cs=['my_custom_cs']
 
 " set indent guide character
