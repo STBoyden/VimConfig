@@ -156,6 +156,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'tbastos/vim-lua'
+Plug 'Chiel92/vim-autoformat'
 
 call plug#end(  ) 
 
@@ -207,6 +208,8 @@ augroup rainbow
     autocmd FileType rust,cpp,c,h,hpp,cs,py,js,ts,vim,cfg RainbowParentheses
 augroup END
 
+au BufWrite *.cs :Autoformat
+
 autocmd FileType c,cpp ClangFormatAutoEnable
 au BufEnter,BufNew *.h setfiletype c
 
@@ -239,6 +242,9 @@ let g:tagbar_type_elm = {
 let g:rooter_change_directory_for_non_project_files = 'current'
 
 let g:AutoPairsShortcutToggle = ''
+
+let g:formatdef_my_custom_cs = '"astyle --mode=cs --style=1tbs -pcHs".&shiftwidth'
+let g:formatters_cs=['my_custom_cs']
 
 " set indent guide character
 let g:indentguides_spacechar='│'
