@@ -40,8 +40,7 @@
             "rootPatterns": ["elm.json"]
         }
     },
-    "lua.enable": true,
-    "lua.commandPath": "/usr/bin/lua-lsp",
-    "lua.version": "5.4"
+
+    "html.autoClosingTags": true
 }
 

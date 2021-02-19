@@ -140,7 +140,7 @@ Plug 'mhinz/vim-startify'
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'voldikss/vim-floaterm'
-Plug 'aurieh/discord.nvim', {'do' : ':UpdateRemotePlugins'}
+" Plug 'aurieh/discord.nvim', {'do' : ':UpdateRemotePlugins'}
 Plug 'itchyny/lightline.vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'terryma/vim-multiple-cursors'
@@ -158,8 +158,22 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'tbastos/vim-lua'
 Plug 'Chiel92/vim-autoformat'
 Plug 'leafo/moonscript-vim'
+Plug 'zivyangll/git-blame.vim'
 
 call plug#end(  ) 
+
+let g:coc_global_extensions = [
+    \ "coc-discord-rpc",
+    \ "coc-explorer",
+    \ "coc-git",
+    \ "coc-html",
+    \ "coc-json",
+    \ "coc-kotlin",
+    \ "coc-omnisharp",
+    \ "coc-prettier",
+    \ "coc-python",
+    \ "coc-rust-analyzer",
+  \ ]
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -270,10 +284,12 @@ imap <A-n><A-n> <Esc>:CocAction<CR>
 
 nnoremap '' :setlocal nu!<CR>:setlocal rnu!<CR>
 
-inoremap <silent><expr> <TAB>
+inoremap <silent><expr> <C-Space>
     \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
+    \ <SID>check_back_space() ? "\<C-Space>" :
     \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
