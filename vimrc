@@ -41,6 +41,9 @@ nnoremap <Leader>k :wincmd k<CR>
 nnoremap <Leader>l :wincmd l<CR>
 nnoremap <Leader><bar> :wincmd v<CR>:wincmd l<CR>:enew<CR>
 
+" since we have J, why can't we have K?
+map K i<Enter><Esc>
+
 " indentation settings
 set tabstop=4
 set shiftwidth=4
