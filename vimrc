@@ -142,16 +142,14 @@ Plug 'mhinz/vim-startify'
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'voldikss/vim-floaterm'
-" Plug 'aurieh/discord.nvim', {'do' : ':UpdateRemotePlugins'}
 Plug 'itchyny/lightline.vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'elmcast/elm-vim'
-Plug 'gilligan/vim-lldb'
 Plug 'preservim/tagbar'
-Plug 'rhysd/vim-clang-format'
+" Plug 'rhysd/vim-clang-format'
 Plug 'leafOfTree/vim-svelte-plugin'
 Plug 'mattn/emmet-vim'
 Plug 'HerringtonDarkholme/yats.vim'
@@ -161,6 +159,7 @@ Plug 'tbastos/vim-lua'
 Plug 'Chiel92/vim-autoformat'
 Plug 'leafo/moonscript-vim'
 Plug 'zivyangll/git-blame.vim'
+Plug 'puremourning/vimspector'
 
 call plug#end(  ) 
 
@@ -227,10 +226,10 @@ augroup END
 
 au BufWrite *.cs :Autoformat
 
-autocmd FileType c,cpp ClangFormatAutoEnable
-au BufEnter,BufNew *.h setfiletype c
+" autocmd FileType c,cpp ClangFormatAutoEnable
+" au BufEnter,BufNew *.h setfiletype c
 
-let g:clang_format#code_style = "llvm"
+" let g:clang_format#code_style = "llvm"
 
 let g:lightline = {
     \ 'colorscheme': 'Tomorrow_Night_Bright',
