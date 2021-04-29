@@ -125,7 +125,7 @@ nnoremap <S-Tab> <<
 vnoremap <S-Tab> <<
 inoremap <S-Tab> <ESC><<i
 
-autocmd VimLeave * set guicursor=a:hor20
+" autocmd VimLeave * set guicursor=a:hor20
 
 " plugins
 call plug#begin( '~/.vim/plugged' )
