@@ -152,7 +152,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'elmcast/elm-vim'
 Plug 'preservim/tagbar'
-" Plug 'rhysd/vim-clang-format'
+Plug 'rhysd/vim-clang-format'
 Plug 'leafOfTree/vim-svelte-plugin'
 Plug 'mattn/emmet-vim'
 Plug 'HerringtonDarkholme/yats.vim'
@@ -163,6 +163,8 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'leafo/moonscript-vim'
 Plug 'zivyangll/git-blame.vim'
 Plug 'puremourning/vimspector'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
 
 call plug#end(  ) 
 
@@ -229,10 +231,10 @@ augroup END
 
 au BufWrite *.cs :Autoformat
 
-" autocmd FileType c,cpp ClangFormatAutoEnable
-" au BufEnter,BufNew *.h setfiletype c
+autocmd FileType c,cpp ClangFormatAutoEnable
+au BufEnter,BufNew *.h setfiletype c
 
-" let g:clang_format#code_style = "llvm"
+let g:clang_format#code_style = "llvm"
 
 let g:lightline = {
     \ 'colorscheme': 'Tomorrow_Night_Bright',
